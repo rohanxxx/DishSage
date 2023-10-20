@@ -1,0 +1,96 @@
+# API EndPoint:
+# 'https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition'
+# 'https://restaurants-near-me-usa.p.rapidapi.com/restaurants/location/zipcode/10025/0'
+# 'https://toast-api-server/menus/v2/menus'
+
+
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Restaurant Menu API"
+paths:
+  /user/login:
+    post:
+      summary: "User Login"
+      responses:
+        200:
+          description: "User successfully logged in"
+      # Add security definitions for Amazon Cognito
+
+  /user/profile:
+    get:
+      summary: "Get User Profile"
+      responses:
+        200:
+          description: "User profile data"
+      # Add security definitions for Amazon Cognito
+
+  /restaurant/search:
+    get:
+      summary: "Search Restaurants by Zipcode"
+      parameters:
+        - name: zipcode
+          in: query
+          type: string
+      responses:
+        200:
+          description: "List of restaurants matching the given zipcode"
+      # Add security definitions for API key or authentication method
+
+  /restaurant/{restaurant_id}/menu:
+    get:
+      summary: "Get Restaurant Menu"
+      parameters:
+        - name: restaurant_id
+          in: path
+          type: string
+        - name: searchable_data
+          in: query
+          type: string
+      responses:
+        200:
+          description: "Restaurant menu data"
+        404:
+          description: "Restaurant not found"
+      # Add security definitions for authentication or API key
+
+  /menu/{menu_id}/nutrition:
+    get:
+      summary: "Get Nutrition Facts of a Dish"
+      parameters:
+        - name: menu_id
+          in: path
+          type: string
+      responses:
+        200:
+          description: "Nutrition facts of the selected dish"
+        404:
+          description: "Dish not found"
+      # Add security definitions for API key or authentication method
+
+  /menu/recommendations:
+    get:
+      summary: "Get Menu Recommendations"
+      parameters:
+        - name: user_id
+          in: query
+          type: string
+      responses:
+        200:
+          description: "Recommended dishes and summarization text"
+      # Add security definitions for authentication or API key
+
+  /restaurant/recommendations:
+    get:
+      summary: "Get Restaurant Recommendations"
+      parameters:
+        - name: user_id
+          in: query
+          type: string
+      responses:
+        200:
+          description: "Recommended restaurants based on user data"
+      # Add security definitions for authentication or API key
+
+securityDefinitions:
+  # Define security definitions for Amazon Cognito, API keys, etc.
